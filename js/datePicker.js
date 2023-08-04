@@ -65,11 +65,12 @@ class DatePicker {
             // Combine the selected date and time into a single Date object
             if (this.choosedTime) {
                 const timeParts = this.choosedTime.split(":");
-                const hours = parseInt(timeParts[0]);
-                const minutes = parseInt(timeParts[1]);
+                let hours = parseInt(timeParts[0]);
+                let minutes = parseInt(timeParts[1]);
 
                 this.selectedDate.setHours(hours);
                 this.selectedDate.setMinutes(minutes);
+
                 this.SELECTED_DATE.textContent = this.formatDate(this.selectedDate);
                 this.SELECTED_DATE.dataset.value = this.selectedDate;
             }
