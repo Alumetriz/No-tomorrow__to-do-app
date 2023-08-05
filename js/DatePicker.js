@@ -12,7 +12,7 @@ class DatePicker {
         this.PREV_MTH_BTN = document.querySelector('.prev-mth');
         this.DATES_ELEMENT = document.querySelector('.dates');
         this.SELECTED_DATE = document.querySelector('.selected-date');
-        this.DAYS_ELEMENT = document.querySelector('.days')
+        this.DAYS_ELEMENT = document.querySelector('.days');
         this.MONTH_CONTAINER = document.querySelector('.month');
         this.CHOOSE_TIME_BTN = document.querySelector('.choose-time__btn');
 
