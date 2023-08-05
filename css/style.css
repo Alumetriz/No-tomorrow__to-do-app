@@ -449,3 +449,49 @@ body {
     border-radius: 5px;
     color: #FFFFFF;
 }
+
+.time-picker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    margin: 25px 0;
+}
+
+.hours,
+.minutes {
+    background-color: #151515;
+    border-radius: 10px;
+    height: 100px;
+    width: 120px;
+    overflow: auto;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 10px;
+
+    /* Hide the scrollbar within the container */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.hours::-webkit-scrollbar,
+.minutes::-webkit-scrollbar {
+    /* Hide the scrollbar for Chrome, Safari, and Opera */
+    display: none;
+}
+
+.hour,
+.minute,
+.dots {
+    color: #FFFFFF;
+    font-size: 27px;
+}
+
+.hour.selected,
+.minute.selected {
+    background-color: green;
+}

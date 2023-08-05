@@ -34,8 +34,8 @@ ADD_TASK__MODAL.addEventListener('click', function (e) {
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May',
             'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-        const hours = datePicker.selectedDate.getHours();
-        const minutes = datePicker.selectedDate.getMinutes();
+        const hours = datePicker.selectedHour;
+        const minutes = datePicker.selectedMinute;
 
         const date = `${datePicker.selectedDate.getDate()} ${months[datePicker.selectedDate.getUTCMonth()]} at ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}`;
 

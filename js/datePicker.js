@@ -16,16 +16,22 @@ class DatePicker {
         this.MONTH_CONTAINER = document.querySelector('.month');
         this.CHOOSE_TIME_BTN = document.querySelector('.choose-time__btn');
 
+        this.HOURS_ELEMENT = document.querySelector('.hours');
+        this.MINUTES_ELEMENT = document.querySelector('.minutes');
 
         this.months = ['January', 'February', 'March', 'April', 'May',
             'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         this.date = new Date();
+        this.minute = this.date.getMinutes();
+        this.hour = this.date.getHours();
         this.day = this.date.getDate();
         this.month = this.date.getMonth();
         this.year = this.date.getFullYear();
 
         this.selectedDate = this.date;
+        this.selectedHour = this.hour;
+        this.selectedMinute = this.minute;
         this.selectedDay = this.day;
         this.selectedMonth = this.month;
         this.selectedYear = this.year;
@@ -44,6 +50,7 @@ class DatePicker {
             this.MODAL_OVERLAY.style.zIndex = '3';
 
             this.populateDates();
+            this.populateTimes();
         });
 
         this.MONTH_CONTAINER.addEventListener('click', (e) => {
@@ -59,21 +66,6 @@ class DatePicker {
         this.CHOOSE_TIME_BTN.addEventListener('click', (e) => {
             this.SET_DEADLINE_MODAL_WINDOW.classList.remove('active');
             this.MODAL_OVERLAY.style.zIndex = '2';
-
-            this.choosedTime = document.querySelector('#set-time').value;
-
-            // Combine the selected date and time into a single Date object
-            if (this.choosedTime) {
-                const timeParts = this.choosedTime.split(":");
-                let hours = parseInt(timeParts[0]);
-                let minutes = parseInt(timeParts[1]);
-
-                this.selectedDate.setHours(hours);
-                this.selectedDate.setMinutes(minutes);
-
-                this.SELECTED_DATE.textContent = this.formatDate(this.selectedDate);
-                this.SELECTED_DATE.dataset.value = this.selectedDate;
-            }
         })
     }
 
@@ -135,6 +127,47 @@ class DatePicker {
             })
 
             this.DAYS_ELEMENT.appendChild(dayElement);
+        }
+    }
+
+    populateTimes() {
+        this.HOURS_ELEMENT.innerHTML = '';
+        this.MINUTES_ELEMENT.innerHTML = '';
+
+        let amountOfHours = 24;
+        for (let h = 0; h < amountOfHours; h++) {
+            const hourElement = document.createElement('div');
+            hourElement.classList.add('hour');
+            hourElement.textContent = h < 10 ? '0' + h : h;
+
+            if (this.selectedHour === h) {
+                hourElement.classList.add('selected');
+            }
+
+            hourElement.addEventListener('click', () => {
+                this.selectedHour = h;
+                this.populateTimes(); // Update time elements when the hour is selected
+            })
+
+            this.HOURS_ELEMENT.appendChild(hourElement);
+        }
+
+        let amountOfMinutes = 60;
+        for (let m = 0; m < amountOfMinutes; m++) {
+            const minuteElement = document.createElement('div');
+            minuteElement.classList.add('minute');
+            minuteElement.textContent = m < 10 ? '0' + m : m;
+
+            if (this.selectedMinute === m) {
+                minuteElement.classList.add('selected');
+            }
+
+            minuteElement.addEventListener('click', () => {
+                this.selectedMinute = m;
+                this.populateTimes(); // Update time elements when the minute is selected
+            })
+
+            this.MINUTES_ELEMENT.appendChild(minuteElement);
         }
     }
 
