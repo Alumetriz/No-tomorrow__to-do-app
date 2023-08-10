@@ -1,48 +1,50 @@
-import { DatePicker } from './DatePicker.js';
+import { DatePicker } from './DatePicker.js'
 
-const datePicker = new DatePicker();
+const datePicker = new DatePicker()
 
 class AddTaskModalWindow {
 	constructor() {
-		this.ADD_TASK__BTN = document.querySelector('.add-task__btn');
-		this.MODAL_OVERLAY = document.querySelector('.modal-overlay');
-		this.ADD_TASK__MODAL = document.querySelector('.add-task__modal');
-		this.TASK_TITLE = document.querySelector('#task-title');
-		this.TASK_DESCR = document.querySelector('#task-descr');
-		this.TASK_CONTAINER = document.querySelector('.tasks__wrapper');
-		this.BODY = document.querySelector('body');
+		this.ADD_TASK__BTN = document.querySelector('.add-task__btn')
+		this.MODAL_OVERLAY = document.querySelector('.modal-overlay')
+		this.ADD_TASK__MODAL = document.querySelector('.add-task__modal')
+		this.TASK_TITLE = document.querySelector('#task-title')
+		this.TASK_DESCR = document.querySelector('#task-descr')
+		this.TASK_CONTAINER = document.querySelector('.tasks__wrapper')
+		this.BODY = document.querySelector('body')
 
-		this.init();
+		this.init()
 	}
 
 	init() {
 		this.ADD_TASK__BTN.addEventListener('click', (e) => {
-			this.MODAL_OVERLAY.classList.add('active');
-			this.ADD_TASK__MODAL.classList.add('active');
+			this.MODAL_OVERLAY.classList.add('active')
+			this.ADD_TASK__MODAL.classList.add('active')
 
-			this.BODY.style.overflow = 'hidden';
-		});
+			this.BODY.style.overflow = 'hidden'
+		})
 
 		this.ADD_TASK__MODAL.addEventListener('click', (e) => {
-			this.addTask(e.target);
-		});
+			this.addTask(e.target)
+		})
 	}
 
 	addTask(target) {
 		if (target.closest('.close-btn')) {
-			this.MODAL_OVERLAY.classList.remove('active');
-			this.ADD_TASK__MODAL.classList.remove('active');
-			this.BODY.style.overflow = 'auto';
+			this.MODAL_OVERLAY.classList.remove('active')
+			this.ADD_TASK__MODAL.classList.remove('active')
+			this.BODY.style.overflow = 'auto'
+			this.TASK_TITLE.value = ''
+			this.TASK_DESCR.value = ''
 		} else if (target.closest('.send-task')) {
-			console.log(this.TASK_TITLE.value, this.TASK_DESCR.value);
+			console.log(this.TASK_TITLE.value, this.TASK_DESCR.value)
 
 			const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May',
-				'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+				'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-			const hours = datePicker.selectedHour;
-			const minutes = datePicker.selectedMinute;
+			const hours = datePicker.selectedHour
+			const minutes = datePicker.selectedMinute
 
-			const date = `${datePicker.selectedDate.getDate()} ${months[datePicker.selectedDate.getUTCMonth()]} at ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}`;
+			const date = `${datePicker.selectedDate.getDate()} ${months[datePicker.selectedDate.getUTCMonth()]} at ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}`
 
 			this.TASK_CONTAINER.insertAdjacentHTML(
 				'beforeend',
@@ -82,9 +84,9 @@ class AddTaskModalWindow {
                         </div>
                     </div>
                 </div>`
-			);
+			)
 		}
 	}
 }
 
-export { AddTaskModalWindow };
+export { AddTaskModalWindow }
