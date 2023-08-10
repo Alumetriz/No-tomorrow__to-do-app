@@ -1,5 +1,5 @@
-import {AddTaskModalWindow} from "./AddTaskModalWindow.js";
+import { AddTaskModalWindow } from './AddTaskModalWindow.js'
 
-const addTaskModal = new AddTaskModalWindow();
+const addTaskModal = new AddTaskModalWindow()
 
 
