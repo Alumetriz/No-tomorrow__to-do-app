@@ -30,11 +30,8 @@ class AddTaskModalWindow {
 
 	addTask(target) {
 		if (target.closest('.close-btn')) {
-			this.MODAL_OVERLAY.classList.remove('active')
-			this.ADD_TASK__MODAL.classList.remove('active')
-			this.BODY.style.overflow = 'auto'
-			this.TASK_TITLE.value = ''
-			this.TASK_DESCR.value = ''
+			this.hideAddTasksModal()
+			this.resetFormsData()
 		} else if (target.closest('.send-task')) {
 			console.log(this.TASK_TITLE.value, this.TASK_DESCR.value)
 
@@ -85,7 +82,39 @@ class AddTaskModalWindow {
                     </div>
                 </div>`
 			)
+
+			this.hideAddTasksModal()
+			this.resetFormsData()
 		}
+	}
+
+	resetFormsData() {
+		this.TASK_TITLE.value = ''
+		this.TASK_DESCR.value = ''
+
+		datePicker.date = new Date()
+
+		datePicker.minute = datePicker.date.getMinutes()
+		datePicker.hour = datePicker.date.getHours()
+		datePicker.day = datePicker.date.getDate()
+		datePicker.month = datePicker.date.getMonth()
+		datePicker.year = datePicker.date.getFullYear()
+
+		datePicker.selectedDate = datePicker.date
+		datePicker.selectedMinute = datePicker.minute
+		datePicker.selectedHour = datePicker.hour
+		datePicker.selectedDay = datePicker.day
+		datePicker.selectedMonth = datePicker.month
+		datePicker.selectedYear = datePicker.year
+
+		datePicker.SELECTED_DATE.textContent = datePicker.formatDate(datePicker.selectedDate)
+		datePicker.SELECTED_DATE.dataset.value = datePicker.selectedDate
+	}
+
+	hideAddTasksModal() {
+		this.MODAL_OVERLAY.classList.remove('active')
+		this.ADD_TASK__MODAL.classList.remove('active')
+		this.BODY.style.overflow = 'auto'
 	}
 }
 

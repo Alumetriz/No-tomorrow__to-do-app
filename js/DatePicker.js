@@ -15,6 +15,8 @@ class DatePicker {
 		this.DAYS_ELEMENT = document.querySelector('.days')
 		this.MONTH_CONTAINER = document.querySelector('.month')
 		this.CHOOSE_TIME_BTN = document.querySelector('.choose-time__btn')
+		this.CANCEL_BTN = document.querySelector('.cancel-btn')
+		this.CLOSE_BTN = document.querySelector('.set-deadline__wrapper .close-btn')
 
 		this.HOURS_ELEMENT = document.querySelector('.hours')
 		this.MINUTES_ELEMENT = document.querySelector('.minutes')
@@ -22,27 +24,15 @@ class DatePicker {
 		this.months = ['January', 'February', 'March', 'April', 'May',
 			'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-		this.date = new Date()
-		this.minute = this.date.getMinutes()
-		this.hour = this.date.getHours()
-		this.day = this.date.getDate()
-		this.month = this.date.getMonth()
-		this.year = this.date.getFullYear()
-
-		this.selectedDate = this.date
-		this.selectedHour = this.hour
-		this.selectedMinute = this.minute
-		this.selectedDay = this.day
-		this.selectedMonth = this.month
-		this.selectedYear = this.year
+		this.setDates()
 
 		this.MTH_ELEMENT.textContent = this.months[this.month] + ' ' + this.year
 
-		this.choosedTime = null
+		this.SELECTED_DATE.textContent = this.formatDate(this.selectedDate)
+		this.SELECTED_DATE.dataset.value = this.selectedDate
 
 		this.init()
 	}
-
 
 	init() {
 		this.SET_DEADLINE_BTN.addEventListener('click', (e) => {
@@ -67,6 +57,24 @@ class DatePicker {
 			this.SET_DEADLINE_MODAL_WINDOW.classList.remove('active')
 			this.MODAL_OVERLAY.style.zIndex = '2'
 		})
+
+		this.CANCEL_BTN.addEventListener('click', () => {
+			this.closeChooseTimeModal()
+		})
+
+		this.CLOSE_BTN.addEventListener('click', () => {
+			this.closeChooseTimeModal()
+		})
+	}
+
+	closeChooseTimeModal() {
+		this.SET_DEADLINE_MODAL_WINDOW.classList.remove('active')
+		this.MODAL_OVERLAY.style.zIndex = '2'
+
+		this.setDates()
+
+		this.SELECTED_DATE.textContent = this.formatDate(this.selectedDate)
+		this.SELECTED_DATE.dataset.value = this.selectedDate
 	}
 
 	goToNextMonth() {
@@ -181,6 +189,22 @@ class DatePicker {
 		let year = d.getFullYear()
 
 		return day + ' / ' + month + ' / ' + year
+	}
+
+	setDates() {
+		this.date = new Date()
+		this.minute = this.date.getMinutes()
+		this.hour = this.date.getHours()
+		this.day = this.date.getDate()
+		this.month = this.date.getMonth()
+		this.year = this.date.getFullYear()
+
+		this.selectedDate = this.date
+		this.selectedHour = this.hour
+		this.selectedMinute = this.minute
+		this.selectedDay = this.day
+		this.selectedMonth = this.month
+		this.selectedYear = this.year
 	}
 }
 
