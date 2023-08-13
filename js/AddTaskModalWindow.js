@@ -12,10 +12,29 @@ class AddTaskModalWindow {
 		this.TASK_CONTAINER = document.querySelector('.tasks__wrapper')
 		this.BODY = document.querySelector('body')
 
+		this.tasks = null
+
+
 		this.init()
 	}
 
 	init() {
+		// Получаем сохраненные данные из localStorage
+		const savedElementsJSON = localStorage.getItem('savedElements')
+
+		if (savedElementsJSON) {
+			// Десериализация JSON-строки обратно в JavaScript массив
+			const savedTasksInnerHTML = JSON.parse(savedElementsJSON)
+
+			// Создаем новые элементы DOM на основе сохраненных данных и добавляем их на страницу
+			savedTasksInnerHTML.forEach((innerHTML) => {
+				const taskElement = document.createElement('div')
+				taskElement.classList.add('task')
+				taskElement.innerHTML = innerHTML
+				this.TASK_CONTAINER.appendChild(taskElement)
+			})
+		}
+
 		this.ADD_TASK__BTN.addEventListener('click', (e) => {
 			this.MODAL_OVERLAY.classList.add('active')
 			this.ADD_TASK__MODAL.classList.add('active')
@@ -85,6 +104,16 @@ class AddTaskModalWindow {
 
 			this.hideAddTasksModal()
 			this.resetFormsData()
+
+			// Получаем DOM элементы
+			this.tasks = Array.from(document.querySelectorAll('.task'))
+
+			// Создаем массив для хранения внутреннего HTML каждого элемента
+			this.tasksInnerHTML = this.tasks.map((task) => task.innerHTML)
+
+			// Сохраняем данные в localStorage
+			// + Сериализация данных в формат JSON и сохранение в localStorage
+			localStorage.setItem('savedElements', JSON.stringify(this.tasksInnerHTML))
 		}
 	}
 
