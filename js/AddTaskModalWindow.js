@@ -1,6 +1,8 @@
 import { DatePicker } from './DatePicker.js'
+import { PriorityPicker } from './PriorityPicker.js'
 
 const datePicker = new DatePicker()
+const priority = new PriorityPicker()
 
 class AddTaskModalWindow {
 	constructor() {
@@ -96,7 +98,7 @@ class AddTaskModalWindow {
                                     ></path>
                                 </g>
                             </svg>
-                            <span class='priority-value'>1</span>
+                            <span class='priority-value'>${priority.priorityValue}</span>
                         </div>
                     </div>
                 </div>`
@@ -138,6 +140,11 @@ class AddTaskModalWindow {
 
 		datePicker.SELECTED_DATE.textContent = datePicker.formatDate(datePicker.selectedDate)
 		datePicker.SELECTED_DATE.dataset.value = datePicker.selectedDate
+
+		priority.priorityValue = 1
+		priority.priorities.forEach((priority) => priority.classList.remove('active'))
+		Array.from(priority.priorities)[0].classList.add('active')
+		console.log(priority.priorities)
 	}
 
 	hideAddTasksModal() {

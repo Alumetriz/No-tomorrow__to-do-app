@@ -350,7 +350,8 @@ body {
 
 /* calendar */
 
-.set-deadline__modal-window {
+.set-deadline__modal-window,
+.set-priority__modal-window {
     /*hidden*/
     display: none;
     /*hidden*/
@@ -367,7 +368,8 @@ body {
     border-radius: 15px;
 }
 
-.set-deadline__modal-window.active {
+.set-deadline__modal-window.active,
+.set-priority__modal-window.active {
     display: block;
 }
 
@@ -426,12 +428,14 @@ body {
     margin: 25px 0;
 }
 
-.set-deadline__btns {
+.set-deadline__btns,
+.set-priority__btns {
     display: flex;
     justify-content: space-around;
 }
 
-.set-deadline__btn {
+.set-deadline__btn,
+.set-priority__btn {
     width: 120px;
     height: 60px;
     text-transform: capitalize;
@@ -442,13 +446,16 @@ body {
     background-color: transparent;
     color: #8687E7;
     border: none;
+    cursor: pointer;
 }
 
-.choose-time__btn {
+.choose-time__btn,
+.save-priority__btn {
     background-color: #8687E7;
     border: none;
     border-radius: 5px;
     color: #FFFFFF;
+    cursor: pointer;
 }
 
 .time-picker {
@@ -642,4 +649,36 @@ body {
     cursor: pointer;
     font-family: 'Lato', sans-serif;
     font-weight: 400;
+}
+
+.set-priority__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.priorities__wrapper {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 35px;
+}
+
+@media screen and (max-width: 700px) {
+    .priorities__wrapper {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+.priority {
+    width: 80px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+
+.priority.active,
+.priority:hover {
+    background-color: #8687E7;
 }
