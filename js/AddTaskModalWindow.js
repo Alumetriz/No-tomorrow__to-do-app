@@ -1,8 +1,10 @@
 import { DatePicker } from './DatePicker.js'
 import { PriorityPicker } from './PriorityPicker.js'
+import { CategoryPicker } from './CategoryPicker.js'
 
 const datePicker = new DatePicker()
 const priority = new PriorityPicker()
+const category = new CategoryPicker()
 
 class AddTaskModalWindow {
 	constructor() {
@@ -63,7 +65,7 @@ class AddTaskModalWindow {
 			const minutes = datePicker.selectedMinute
 
 			const date = `${datePicker.selectedDate.getDate()} ${months[datePicker.selectedDate.getUTCMonth()]} at ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}`
-
+			console.log(category.choosedCategory.categoryTitle)
 			this.TASK_CONTAINER.insertAdjacentHTML(
 				'beforeend',
 				`<div class='task'>
@@ -78,15 +80,9 @@ class AddTaskModalWindow {
                     </div>
 
                     <div class='task__part-info'>
-                        <div class='category'>
-                            <svg fill='#000000' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'>
-                                <g id='SVGRepo_bgCarrier' stroke-width='0'></g>
-                                <g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g>
-                                <g id='SVGRepo_iconCarrier'>
-                                    <path d='M16 6.28a1.23 1.23 0 0 0-.62-1.07l-6.74-4a1.27 1.27 0 0 0-1.28 0l-6.75 4a1.25 1.25 0 0 0 0 2.15l1.92 1.12v2.81a1.28 1.28 0 0 0 .62 1.09l4.25 2.45a1.28 1.28 0 0 0 1.24 0l4.25-2.45a1.28 1.28 0 0 0 .62-1.09V8.45l1.24-.73v2.72H16V6.28zm-3.73 5L8 13.74l-4.22-2.45V9.22l3.58 2.13a1.29 1.29 0 0 0 1.28 0l3.62-2.16zM8 10.27l-6.75-4L8 2.26l6.75 4z'></path>
-                                </g>
-                            </svg>
-                            <span class='category-title'>University</span>
+                        <div class='category' style='background-color: ${category.choosedCategory.categoryBGColor}'>
+                            ${category.choosedCategory.categoryImage}
+                            <span class='choosed-category-title'>${category.choosedCategory.categoryTitle}</span>
                         </div>
                         <div class='priority'>
                             <svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
