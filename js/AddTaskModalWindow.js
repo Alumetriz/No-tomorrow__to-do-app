@@ -1,6 +1,7 @@
 import { DatePicker } from './DatePicker.js'
 import { PriorityPicker } from './PriorityPicker.js'
 import { CategoryPicker } from './CategoryPicker.js'
+import { categories } from './categoriesData.js'
 
 const datePicker = new DatePicker()
 const priority = new PriorityPicker()
@@ -65,7 +66,7 @@ class AddTaskModalWindow {
 			const minutes = datePicker.selectedMinute
 
 			const date = `${datePicker.selectedDate.getDate()} ${months[datePicker.selectedDate.getUTCMonth()]} at ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}`
-			console.log(category.choosedCategory.categoryTitle)
+			// console.log(category.choosedCategory.categoryTitle)
 			this.TASK_CONTAINER.insertAdjacentHTML(
 				'beforeend',
 				`<div class='task'>
@@ -140,7 +141,17 @@ class AddTaskModalWindow {
 		priority.priorityValue = 1
 		priority.priorities.forEach((priority) => priority.classList.remove('active'))
 		Array.from(priority.priorities)[0].classList.add('active')
-		console.log(priority.priorities)
+
+		category.choosedCategory = {
+			categoryTitle: categories[0].title,
+			categoryImage: categories[0].svgImage,
+			categoryBGColor: categories[0].bgColor
+		}
+
+		const categoriesArray = document.querySelectorAll('.category-card')
+		categoriesArray.forEach((category) => category.querySelector('.category-title').classList.remove('choosed'))
+
+		document.querySelectorAll('.category-title')[0].classList.add('choosed')
 	}
 
 	hideAddTasksModal() {
