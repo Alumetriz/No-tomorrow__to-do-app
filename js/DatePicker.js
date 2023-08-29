@@ -37,7 +37,7 @@ class DatePicker {
 	init() {
 		this.SET_DEADLINE_BTN.addEventListener('click', (e) => {
 			this.SET_DEADLINE_MODAL_WINDOW.classList.add('active')
-			this.MODAL_OVERLAY.style.zIndex = '3'
+			this.MODAL_OVERLAY.style.zIndex = '5'
 
 			this.populateDates()
 			this.populateTimes()
@@ -55,7 +55,7 @@ class DatePicker {
 
 		this.CHOOSE_TIME_BTN.addEventListener('click', (e) => {
 			this.SET_DEADLINE_MODAL_WINDOW.classList.remove('active')
-			this.MODAL_OVERLAY.style.zIndex = '2'
+			this.MODAL_OVERLAY.style.zIndex = '3'
 		})
 
 		this.CANCEL_BTN.addEventListener('click', () => {
@@ -69,7 +69,7 @@ class DatePicker {
 
 	closeChooseTimeModal() {
 		this.SET_DEADLINE_MODAL_WINDOW.classList.remove('active')
-		this.MODAL_OVERLAY.style.zIndex = '2'
+		this.MODAL_OVERLAY.style.zIndex = '3'
 
 		this.setDates()
 

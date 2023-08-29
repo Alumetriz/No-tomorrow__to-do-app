@@ -22,7 +22,7 @@ class PriorityPicker {
 
 		this.SET_PRIORITY_BTN.addEventListener('click', () => {
 			this.SET_PRIORITY_MODAL_WINDOW.classList.add('active')
-			this.MODAL_OVERLAY.style.zIndex = '3'
+			this.MODAL_OVERLAY.style.zIndex = '5'
 		})
 
 		this.PRIORITIES_WRAPPER.addEventListener('click', (e) => {
@@ -39,11 +39,11 @@ class PriorityPicker {
 
 		this.SAVE_PRIORITY_BTN.addEventListener('click', () => {
 			this.SET_PRIORITY_MODAL_WINDOW.classList.remove('active')
-			this.MODAL_OVERLAY.style.zIndex = '2'
+			this.MODAL_OVERLAY.style.zIndex = '3'
 		})
 		this.CANCEL_BTN.addEventListener('click', () => {
 			this.SET_PRIORITY_MODAL_WINDOW.classList.remove('active')
-			this.MODAL_OVERLAY.style.zIndex = '2'
+			this.MODAL_OVERLAY.style.zIndex = '3'
 
 			this.priorityValue = 1
 			priorities.forEach((priority) => priority.classList.remove('active'))
@@ -51,7 +51,7 @@ class PriorityPicker {
 		})
 		this.CLOSE_BTN.addEventListener('click', () => {
 			this.SET_PRIORITY_MODAL_WINDOW.classList.remove('active')
-			this.MODAL_OVERLAY.style.zIndex = '2'
+			this.MODAL_OVERLAY.style.zIndex = '3'
 
 			this.priorityValue = 1
 			priorities.forEach((priority) => priority.classList.remove('active'))

@@ -15,6 +15,7 @@ a {
 body {
     font-family: 'Lato', sans-serif;
     background-color: #151515;
+    position: relative;
 }
 
 .wrapper {
@@ -160,6 +161,7 @@ body {
     font-size: 19px;
     color: #FFFFFF;
     font-family: 'Open Sans', sans-serif;
+    z-index: 2;
 }
 
 .priority-value {
@@ -168,11 +170,24 @@ body {
 }
 
 .category {
+    position: relative;
     background-color: #809CFF;
     border-radius: 5px;
     color: white;
 
     padding: 10px;
+}
+
+.category:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    z-index: 1;
 }
 
 .priority,
@@ -199,6 +214,10 @@ body {
     height: 30px;
 }
 
+.category svg {
+    z-index: 2;
+}
+
 .priority svg {
     fill: #E8E8E8;
 }
@@ -208,14 +227,15 @@ body {
     display: none;
     /*hidden*/
 
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
     max-width: 1240px;
     padding: 0 20px;
     width: 100%;
-    z-index: 2;
+    z-index: 4;
 }
 
 .add-task__modal.active {
@@ -366,14 +386,14 @@ body {
     display: none;
     /*hidden*/
 
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 1040px;
     padding: 60px 30px;
     width: 95%;
-    z-index: 4;
+    z-index: 6;
     background-color: #363636;
     border-radius: 15px;
 }
@@ -764,4 +784,193 @@ body {
 .categories__wrapper.hidden,
 .input-category-data__form.hidden {
     display: none;
+}
+
+.task-screen {
+    display: none;
+
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    background-color: #151515;
+    z-index: 999;
+    padding: 40px 20px;
+    overflow: auto;
+}
+
+.task-screen.active {
+    display: flex;
+    overflow: hidden;
+}
+
+.task-screen__wrapper {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.nav-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nav-btns .close,
+.nav-btns .repeat {
+    padding: 5px;
+    font-size: 19px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #1D1D1D;
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.nav-btns .close svg,
+.nav-btns .repeat svg {
+    width: 35px;
+    height: 35px;
+}
+
+.task-options {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.edit {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.edit svg {
+    width: 35px;
+    height: 35px;
+}
+
+.radio {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    background-color: #363636;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.radio.active {
+    background-color: green;
+}
+
+.task-text {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.task-text h3,
+.task-text p {
+    color: #FFFFFF;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.task-text h3 {
+    font-size: 26px;
+}
+
+.task-text p {
+    font-size: 17px;
+    color: #AFAFAF;
+}
+
+.task-details__list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.task-detail__icon {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.task-detail__icon svg {
+    width: 35px;
+    height: 35px;
+}
+
+.task-details__list-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-detail__title {
+    font-size: 21px;
+    color: #FFFFFF;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.task-detail__title.delete-task {
+    color: #FF4949;
+}
+
+.task-detail__icon.delete-task {
+    cursor: pointer;
+}
+
+.detail {
+    background-color: #595959;
+    padding: 15px;
+    border-radius: 8px;
+
+    color: #FFFFFF;
+    font-size: 17px;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: capitalize;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    cursor: pointer;
+}
+
+.detail svg {
+    width: 30px;
+    height: 30px;
+}
+
+.save-changes__btn {
+    background-color: #8687E7;
+    border: none;
+    border-radius: 8px;
+    padding: 15px;
+    width: 50%;
+    margin: 0 auto;
+
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 21px;
+    color: #FFFFFF;
+    text-transform: capitalize;
+
+    cursor: pointer;
 }

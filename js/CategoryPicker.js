@@ -30,12 +30,12 @@ class CategoryPicker {
 
 		this.SET_CATEGORY.addEventListener('click', () => {
 			this.SET_CATEGORY_MODAL_WINDOW.classList.add('active')
-			this.MODAL_OVERLAY.style.zIndex = '3'
+			this.MODAL_OVERLAY.style.zIndex = '5'
 		})
 
 		this.CLOSE_BTN.addEventListener('click', () => {
 			this.SET_CATEGORY_MODAL_WINDOW.classList.remove('active')
-			this.MODAL_OVERLAY.style.zIndex = '2'
+			this.MODAL_OVERLAY.style.zIndex = '3'
 
 			this.choosedCategory = {
 				categoryTitle: categories[0].title,
@@ -83,10 +83,10 @@ class CategoryPicker {
 
 			if (target.classList.contains('choose-category__btn')) {
 				this.SET_CATEGORY_MODAL_WINDOW.classList.remove('active')
-				this.MODAL_OVERLAY.style.zIndex = '2'
+				this.MODAL_OVERLAY.style.zIndex = '3'
 			} else if (target.classList.contains('cancel-btn')) {
 				this.SET_CATEGORY_MODAL_WINDOW.classList.remove('active')
-				this.MODAL_OVERLAY.style.zIndex = '2'
+				this.MODAL_OVERLAY.style.zIndex = '3'
 
 				this.choosedCategory = {
 					categoryTitle: categories[0].title,
@@ -153,15 +153,6 @@ class CategoryPicker {
 		)
 
 		this.CREATE_NEW_CATEGORY = document.querySelector('.create-new-category')
-		// this.categoriesArray.forEach((category) => {
-		// 	this.CREATE_NEW_CATEGORY.insertAdjacentHTML(
-		// 		'beforebegin',
-		// 		`<div class='category-card'>
-		// 						<div class='category-img' style='background-color: ${category.bgColor}'>${category.svgImage}</div>
-		// 						<h3 class='category-title'>${category.title}</h3>
-		// 					</div>`
-		// 	)
-		// })
 
 		categories.forEach((category) => {
 			this.CREATE_NEW_CATEGORY.insertAdjacentHTML(
