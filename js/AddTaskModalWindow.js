@@ -18,7 +18,7 @@ class AddTaskModalWindow {
 		this.BODY = document.querySelector('body')
 
 		this.tasks = null
-
+		this.tasksCounter = 0
 
 		this.init()
 	}
@@ -75,7 +75,7 @@ class AddTaskModalWindow {
                         <path d='M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z'/>
                     </svg>
 
-                    <div class='task__main-info' data-description='${this.TASK_DESCR.value}'>
+                    <div class='task__main-info' data-description='${this.TASK_DESCR.value}' data-counter='${this.tasksCounter++}'>
                         <h2 class='task-title'>${this.TASK_TITLE.value}</h2>
                         <p class='task-deadline'>${date}</p>
                     </div>
@@ -109,7 +109,7 @@ class AddTaskModalWindow {
 
 			// Создаем массив для хранения внутреннего HTML каждого элемента
 			this.tasksInnerHTML = this.tasks.map((task) => task.innerHTML)
-			console.log(this.tasksInnerHTML)
+
 			// Сохраняем данные в localStorage
 			// + Сериализация данных в формат JSON и сохранение в localStorage
 			localStorage.setItem('savedElements', JSON.stringify(this.tasksInnerHTML))

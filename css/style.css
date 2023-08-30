@@ -265,7 +265,7 @@ body {
     display: none;
     /*hidden*/
 
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -273,18 +273,12 @@ body {
     background-color: rgba(0, 0, 0, 0.74);
     backdrop-filter: blur(3px);
 
-    z-index: 1;
+    z-index: 3;
 }
 
 .modal-overlay.active {
     display: block;
 }
-
-
-#set-date {
-
-}
-
 
 .modal-title {
     font-size: 25px;
@@ -844,8 +838,9 @@ body {
 
 .task-options {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    gap: 55px;
 }
 
 .edit {
@@ -973,4 +968,18 @@ body {
     text-transform: capitalize;
 
     cursor: pointer;
+}
+
+.task-text__title,
+.task-text__descr {
+    background-color: #151515;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    /*max-width: 400px;*/
+    width: 400px;
+
+    color: #FFFFFF;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 26px;
 }

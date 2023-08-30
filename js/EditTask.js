@@ -14,6 +14,11 @@ class EditTask {
 		this.CATEGORY_DETAIL = document.querySelector('.category-detail')
 		this.PRIORITY_DETAIL = document.querySelector('.priority-detail')
 
+		this.DELETE_TASK_BTN = document.querySelector('.delete-task')
+		this.TASK_TEXT = document.querySelector('.task-text')
+		this.TASK_INPUTS = document.querySelectorAll('.task-text input')
+		this.SAVE_CHANGES_BTN = document.querySelector('.save-changes__btn')
+
 		this.CLOSE_BTN = document.querySelector('.nav-btns .close')
 		this.REPEAT_BTN = document.querySelector('.nav-btns .repeat')
 
@@ -25,25 +30,25 @@ class EditTask {
 			taskCategory: null
 		}
 
+		this.choosedTask = null
+
 		this.init()
 	}
 
 	init() {
-		console.log(this.TASKS_WRAPPER)
 		this.TASKS_WRAPPER.addEventListener('click', (e) => {
 
 			const taskMainInfo = e.target.closest('.task__main-info')
 			const task = e.target.closest('.task')
-
-			console.log(task)
-
 			const editTaskBtn = e.target.closest('.options-task__btn')
+
 			if (editTaskBtn) {
 				this.TASK_SCREEN.classList.add('active')
 				this.BODY.style.overflow = 'hidden'
+
+				this.choosedTask = task
 			}
 
-			console.log(taskMainInfo)
 			const title = task.querySelector('.task-title').textContent
 			const description = task.querySelector('.task__main-info').dataset.description
 			const deadline = task.querySelector('.task-deadline').textContent
@@ -51,9 +56,8 @@ class EditTask {
 			task.querySelector('.priority svg').style.fill = '#E8E8E8'
 			const priority = task.querySelector('.priority').innerHTML
 
-
-			this.MODAL_TASK_TITLE.textContent = title
-			this.MODAL_TASK_DESCR.textContent = description
+			this.MODAL_TASK_TITLE.value = title
+			this.MODAL_TASK_DESCR.value = description
 			this.DEADLINE_DETAIL.textContent = deadline
 			this.CATEGORY_DETAIL.innerHTML = category
 			this.PRIORITY_DETAIL.innerHTML = priority
@@ -64,8 +68,42 @@ class EditTask {
 			this.BODY.style.overflow = 'auto'
 		})
 
+		this.DELETE_TASK_BTN.addEventListener('click', () => {
+			this.choosedTask.remove()
 
+			this.TASK_SCREEN.classList.remove('active')
+			this.BODY.style.overflow = 'auto'
+
+			this.saveToLocalStorage()
+		})
+
+		this.SAVE_CHANGES_BTN.addEventListener('click', () => {
+			const newTaskTitle = document.querySelector('.task-text__title').value
+			const newTaskDescr = document.querySelector('.task-text__descr').value
+			const taskMainInfo = this.choosedTask.querySelector('.task__main-info')
+
+			this.choosedTask.querySelector('.task-title').textContent = newTaskTitle
+			taskMainInfo.dataset.description = newTaskDescr
+
+			this.TASK_SCREEN.classList.remove('active')
+			this.BODY.style.overflow = 'auto'
+
+			this.saveToLocalStorage()
+		})
 	}
+
+	saveToLocalStorage() {
+		// Получаем DOM элементы
+		addTaskModal.tasks = Array.from(document.querySelectorAll('.task'))
+
+		// Создаем массив для хранения внутреннего HTML каждого элемента
+		addTaskModal.tasksInnerHTML = addTaskModal.tasks.map((task) => task.innerHTML)
+
+		// Сохраняем данные в localStorage
+		// + Сериализация данных в формат JSON и сохранение в localStorage
+		localStorage.setItem('savedElements', JSON.stringify(addTaskModal.tasksInnerHTML))
+	}
+
 }
 
 export { EditTask }
