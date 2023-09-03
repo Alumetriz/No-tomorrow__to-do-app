@@ -13,6 +13,7 @@ class EditTask {
 		this.DEADLINE_DETAIL = document.querySelector('.deadline-detail')
 		this.CATEGORY_DETAIL = document.querySelector('.category-detail')
 		this.PRIORITY_DETAIL = document.querySelector('.priority-detail')
+		this.DONE_TASK_BTN = document.querySelector('.done-task')
 
 		this.DELETE_TASK_BTN = document.querySelector('.delete-task')
 		this.TASK_TEXT = document.querySelector('.task-text')
@@ -87,6 +88,20 @@ class EditTask {
 
 			this.TASK_SCREEN.classList.remove('active')
 			this.BODY.style.overflow = 'auto'
+
+			this.saveToLocalStorage()
+		})
+
+
+		this.DONE_TASK_BTN.addEventListener('click', () => {
+			this.DONE_TASK_BTN.classList.toggle('active')
+			const title = this.choosedTask.querySelector('.task-title')
+
+			if (title.classList.contains('completed')) {
+				title.classList.remove('completed')
+			} else {
+				title.classList.add('completed')
+			}
 
 			this.saveToLocalStorage()
 		})
